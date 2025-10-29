@@ -63,44 +63,13 @@ return {
 		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 		local servers = {
-			pylsp = {
-				enabled = false,
-				filetypes = { "python" },
-				settings = {
-					pylsp = {
-						configuratinSources = { "pycodestyle", "pyflakes" },
-						plugins = {
-							pyflakes = {
-								enabled = false,
-							},
-							pycodestyle = {
-								enabled = true,
-								maxLineLength = 120,
-							},
-							jedi_completion = {
-								enabled = true,
-								include_function_objects = false,
-								include_class_objects = false,
-							},
-						},
-					},
-				},
-			},
 			pyright = {
 				enabled = true,
 				filetypes = { "python" },
-				settings = {},
-			},
-			rust_analyzer = {
-				enabled = true,
-				filetypes = { "rust" },
-				settings = {
-					["rust-analyzer"] = {
-						rustfmt = {
-							enabled = true,
-						},
-					},
+				setup = {
+					cmd = { "pyright-langserver", "--stdio" },
 				},
+				settings = {},
 			},
 		}
 
