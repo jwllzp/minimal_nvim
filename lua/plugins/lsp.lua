@@ -53,12 +53,6 @@ return {
 			},
 		}
 
-		require("mason").setup({
-			registries = {
-				"github:mason-org/mason-registry",
-			},
-		})
-
 		local exclude = {}
 		for server, settings in pairs(servers) do
 			if not settings["enabled"] then
