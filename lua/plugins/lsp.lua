@@ -1,26 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
-	dependencies = {
-		{ "williamboman/mason.nvim", config = true },
-		"williamboman/mason-lspconfig.nvim",
-		{
-			"j-hui/fidget.nvim",
-			enabled = true,
-			opts = {
-				progress = {
-					suppress_on_insert = true,
-					display = {
-						render_limit = 1,
-					},
-				},
-				notification = {
-					window = {
-						winblend = 0,
-					},
-				},
-			},
-		},
-	},
+	dependencies = {},
 	config = function()
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
@@ -79,7 +59,6 @@ return {
 			},
 		})
 
-		local ensure_installed = vim.tbl_keys(servers or {})
 		local exclude = {}
 		for server, settings in pairs(servers) do
 			if not settings["enabled"] then
@@ -92,12 +71,5 @@ return {
 				vim.lsp.config(server, settings)
 			end
 		end
-
-		require("mason-lspconfig").setup({
-			ensure_installed = ensure_installed,
-			automatic_enable = {
-				exclude = exclude,
-			},
-		})
 	end,
 }
