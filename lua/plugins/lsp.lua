@@ -1,6 +1,7 @@
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {},
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
