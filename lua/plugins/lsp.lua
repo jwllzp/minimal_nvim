@@ -62,7 +62,12 @@ return {
 
 		for server, settings in pairs(servers) do
 			if settings["enabled"] then
-				vim.lsp.config(server, settings)
+				require("lspconfig")[server].setup({
+					capabilities = capabilities,
+					cmd = settings.setup and settings.setup.cmd,
+					filetypes = settings.filetypes,
+					settings = settings.settings,
+				})
 			end
 		end
 	end,
