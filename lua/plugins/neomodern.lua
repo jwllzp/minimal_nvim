@@ -48,4 +48,3 @@ return {
 		require("neomodern").load()
 	end,
 }
-:
